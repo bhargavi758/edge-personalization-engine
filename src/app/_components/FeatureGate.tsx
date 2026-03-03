@@ -1,23 +1,12 @@
-import type { EvaluatedFlags } from "@/lib/features/types";
+"use client";
 
 interface FeatureGateProps {
   flagId: string;
-  flags: EvaluatedFlags;
+  flags: Record<string, boolean>;
   children: React.ReactNode;
-  fallback?: React.ReactNode;
 }
 
-export function FeatureGate({
-  flagId,
-  flags,
-  children,
-  fallback = null,
-}: FeatureGateProps) {
-  const isEnabled = flags[flagId] ?? false;
-
-  if (!isEnabled) {
-    return <>{fallback}</>;
-  }
-
+export function FeatureGate({ flagId, flags, children }: FeatureGateProps) {
+  if (!flags[flagId]) return null;
   return <>{children}</>;
 }

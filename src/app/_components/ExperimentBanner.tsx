@@ -1,5 +1,7 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
 interface ExperimentBannerProps {
   experimentId: string;
   variant: string;
@@ -10,18 +12,21 @@ export function ExperimentBanner({
   variant,
 }: ExperimentBannerProps) {
   return (
-    <div className="border-b border-brand-primary/20 bg-brand-primary/5 px-4 py-2">
-      <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 text-sm">
-        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-primary text-[10px] font-bold text-white">
-          A/B
+    <div className={cn("border-b border-primary/20 bg-primary/5 px-4 py-1.5")}>
+      <div className="flex items-center justify-center gap-2 text-xs">
+        <span className={cn(
+          "flex h-4 w-4 items-center justify-center rounded bg-primary",
+          "text-[8px] font-bold text-primary-foreground"
+        )}>
+          AB
         </span>
-        <span className="text-brand-cool-grey">
+        <span className="text-muted-foreground">
           Experiment{" "}
-          <code className="rounded bg-brand-primary/10 px-1.5 py-0.5 font-mono text-xs text-brand-primary">
+          <code className="rounded bg-primary/10 px-1 py-0.5 font-mono text-[11px] text-primary">
             {experimentId}
           </code>{" "}
-          — you are in variant{" "}
-          <code className="rounded bg-brand-primary/10 px-1.5 py-0.5 font-mono text-xs font-semibold text-brand-primary">
+          &mdash; variant{" "}
+          <code className="rounded bg-primary/10 px-1 py-0.5 font-mono text-[11px] font-semibold text-primary">
             {variant}
           </code>
         </span>

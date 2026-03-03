@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { experiments, getActiveExperiments } from "@/lib/experiments/config";
 import type { Experiment } from "@/lib/experiments/types";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -10,56 +11,68 @@ function ExperimentCard({ experiment }: { experiment: Experiment }) {
   const isActive = experiment.enabled;
 
   return (
-    <div className="card">
-      <div className="flex items-start justify-between">
+    <div className={cn("rounded-lg border border-border bg-card")}>
+      <div className="flex items-start justify-between p-5">
         <div>
-          <h3 className="text-lg font-semibold text-brand-dark">
+          <h3 className="text-sm font-semibold text-card-foreground">
             {experiment.name}
           </h3>
-          <p className="mt-1 text-sm text-brand-cool-grey">
+          <p className="mt-0.5 text-xs text-muted-foreground">
             {experiment.description}
           </p>
         </div>
-        <span className={isActive ? "badge-green" : "badge-red"}>
+        <span
+          className={cn(
+            "inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[11px] font-medium",
+            isActive
+              ? "bg-primary/10 text-primary"
+              : "bg-muted text-muted-foreground"
+          )}
+        >
+          <span className={cn("h-1.5 w-1.5 rounded-full", isActive ? "bg-primary" : "bg-muted-foreground")} />
           {isActive ? "Active" : "Inactive"}
         </span>
       </div>
 
-      <div className="mt-6">
-        <p className="mb-3 text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
+      <div className="border-t border-border px-5 py-4">
+        <p className="mb-2.5 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
           Variants
         </p>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {experiment.variants.map((variant) => {
             const isAssigned = variant.id === currentVariant;
             return (
               <div
                 key={variant.id}
-                className={`flex items-center justify-between rounded-lg border p-3 text-sm ${
+                className={cn(
+                  "flex items-center justify-between rounded-md border px-3 py-2 text-sm",
                   isAssigned
-                    ? "border-brand-primary bg-brand-primary/5"
-                    : "border-gray-200"
-                }`}
+                    ? "border-primary/30 bg-primary/5"
+                    : "border-border"
+                )}
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`h-2.5 w-2.5 rounded-full ${
-                      isAssigned ? "bg-brand-primary" : "bg-gray-300"
-                    }`}
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className={cn(
+                      "h-2 w-2 rounded-full",
+                      isAssigned ? "bg-primary" : "bg-muted-foreground/30"
+                    )}
                   />
                   <div>
-                    <p className="font-medium">{variant.name}</p>
-                    <p className="text-xs text-brand-cool-grey">
+                    <p className="text-xs font-medium text-card-foreground">{variant.name}</p>
+                    <p className="text-[11px] text-muted-foreground">
                       {variant.description}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-brand-cool-grey">
-                    {variant.weight}% traffic
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    {variant.weight}%
                   </span>
                   {isAssigned && (
-                    <span className="badge-blue">You</span>
+                    <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">
+                      YOU
+                    </span>
                   )}
                 </div>
               </div>
@@ -68,10 +81,16 @@ function ExperimentCard({ experiment }: { experiment: Experiment }) {
         </div>
       </div>
 
-      <div className="mt-4 flex items-center gap-4 border-t border-gray-100 pt-4 text-xs text-brand-cool-grey">
+      <div className="flex items-center gap-3 border-t border-border px-5 py-3 font-mono text-[11px] text-muted-foreground">
         <span>ID: {experiment.id}</span>
+        <span className="text-border">|</span>
         <span>Started: {experiment.startDate}</span>
-        {experiment.endDate && <span>Ends: {experiment.endDate}</span>}
+        {experiment.endDate && (
+          <>
+            <span className="text-border">|</span>
+            <span>Ends: {experiment.endDate}</span>
+          </>
+        )}
       </div>
     </div>
   );
@@ -82,37 +101,35 @@ export default function ExperimentsPage() {
   const all = Object.values(experiments);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mb-10">
-        <h1 className="section-heading">A/B Testing</h1>
-        <p className="section-subheading max-w-2xl">
+    <div className="px-6 py-8">
+      <div className="mb-8">
+        <h1 className="text-xl font-semibold text-foreground">A/B Testing</h1>
+        <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
           Experiments are assigned at the edge via middleware. Each visitor gets
           a deterministic variant based on their visitor ID, ensuring consistent
           experiences across sessions.
         </p>
       </div>
 
-      <div className="mb-8 grid gap-4 sm:grid-cols-3">
-        <div className="card bg-brand-fog">
-          <p className="text-3xl font-bold text-brand-primary">{all.length}</p>
-          <p className="text-sm text-brand-cool-grey">Total Experiments</p>
-        </div>
-        <div className="card bg-brand-fog">
-          <p className="text-3xl font-bold text-emerald-600">{active.length}</p>
-          <p className="text-sm text-brand-cool-grey">Active Now</p>
-        </div>
-        <div className="card bg-brand-fog">
-          <p className="text-3xl font-bold text-brand-dark">
-            {all.reduce((sum, e) => sum + e.variants.length, 0)}
-          </p>
-          <p className="text-sm text-brand-cool-grey">Total Variants</p>
-        </div>
+      <div className="mb-8 grid gap-3 sm:grid-cols-3">
+        {[
+          { label: "Total Experiments", value: all.length, accent: "text-primary" },
+          { label: "Active Now", value: active.length, accent: "text-primary" },
+          { label: "Total Variants", value: all.reduce((sum, e) => sum + e.variants.length, 0), accent: "text-foreground" },
+        ].map((stat) => (
+          <div key={stat.label} className={cn("rounded-lg border border-border bg-card p-4")}>
+            <p className={cn("font-mono text-2xl font-bold", stat.accent)}>
+              {stat.value}
+            </p>
+            <p className="mt-0.5 text-xs text-muted-foreground">{stat.label}</p>
+          </div>
+        ))}
       </div>
 
-      <section className="mb-12">
-        <h2 className="mb-4 text-xl font-semibold">How It Works</h2>
-        <div className="code-block">
-          <pre>{`1. Visitor arrives → Edge Middleware runs
+      <section className="mb-8">
+        <h2 className="mb-3 text-sm font-semibold text-foreground">How It Works</h2>
+        <div className="rounded-lg border border-border bg-sidebar p-4 font-mono text-xs leading-relaxed text-sidebar-foreground">
+          <pre className="whitespace-pre-wrap">{`1. Visitor arrives → Edge Middleware runs
 2. Middleware reads visitor ID from cookie (or generates new one)
 3. For each active experiment:
    a. Check if assignment cookie already exists → sticky session
@@ -124,7 +141,7 @@ export default function ExperimentsPage() {
         </div>
       </section>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {all.map((experiment) => (
           <ExperimentCard key={experiment.id} experiment={experiment} />
         ))}

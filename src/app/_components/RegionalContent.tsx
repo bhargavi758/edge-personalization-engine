@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface RegionalContentProps {
   continent: string;
@@ -50,39 +51,39 @@ export function RegionalContent({
   };
 
   return (
-    <section className="mb-12">
-      <h2 className="mb-6 text-2xl font-bold">Timezone-Aware Content</h2>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div className="card">
-          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
+    <section className="mb-8">
+      <h2 className="mb-4 text-lg font-semibold text-foreground">Timezone-Aware Content</h2>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className={cn("rounded-lg border border-border bg-card p-5")}>
+          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
             Your Local Time ({timezone})
           </p>
-          <p className="mt-2 font-mono text-2xl font-bold text-brand-dark">
+          <p className="mt-2 font-mono text-xl font-bold text-card-foreground">
             {localTime || "Loading..."}
           </p>
         </div>
 
-        <div className="card">
-          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
+        <div className={cn("rounded-lg border border-border bg-card p-5")}>
+          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
             Detected Region
           </p>
-          <p className="mt-2 text-2xl font-bold text-brand-dark">
+          <p className="mt-2 text-xl font-bold text-card-foreground">
             {continentEmoji[continent] ?? "🌐"} {continent}
           </p>
-          <p className="mt-1 text-sm text-brand-cool-grey">
+          <p className="mt-0.5 font-mono text-xs text-muted-foreground">
             Country code: {country}
           </p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
-        <p className="text-sm text-blue-800">
-          <strong>How this works:</strong> The Edge Middleware reads{" "}
-          <code className="rounded bg-blue-100 px-1 font-mono text-xs">
+      <div className={cn("mt-4 rounded-lg border border-primary/20 bg-primary/5 p-4")}>
+        <p className="text-xs text-muted-foreground">
+          <strong className="text-card-foreground">How this works:</strong> The Edge Middleware reads{" "}
+          <code className="rounded bg-primary/10 px-1 font-mono text-[11px] text-primary">
             x-vercel-ip-country
           </code>{" "}
           and{" "}
-          <code className="rounded bg-blue-100 px-1 font-mono text-xs">
+          <code className="rounded bg-primary/10 px-1 font-mono text-[11px] text-primary">
             x-vercel-ip-region
           </code>{" "}
           headers injected by Vercel&apos;s edge network. In local development,
