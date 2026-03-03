@@ -40,7 +40,7 @@ function extractGeo(request: NextRequest) {
   const city =
     request.headers.get(GEO_HEADER_CITY) ??
     request.geo?.city ??
-    "Stanford";
+    "San Francisco";
 
   return resolveGeo(country, region, city);
 }

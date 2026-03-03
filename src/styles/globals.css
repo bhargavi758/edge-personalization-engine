@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    --stanford-red: #8C1515;
-    --stanford-red-dark: #6E1010;
-    --stanford-red-light: #B83A3A;
-    --stanford-black: #2E2D29;
-    --stanford-warm: #D2C295;
-    --stanford-fog: #F4F4F4;
+    --brand-primary: #2563EB;
+    --brand-primary-dark: #1D4ED8;
+    --brand-primary-light: #3B82F6;
+    --brand-dark: #2E2D29;
+    --brand-warm: #D2C295;
+    --brand-fog: #F4F4F4;
   }
 
   body {
-    @apply bg-white text-stanford-black antialiased;
+    @apply bg-white text-brand-dark antialiased;
   }
 
   h1, h2, h3, h4 {
@@ -23,17 +23,17 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-md bg-stanford-red px-6 py-3
+    @apply inline-flex items-center justify-center rounded-md bg-brand-primary px-6 py-3
            text-sm font-semibold text-white transition-colors
-           hover:bg-stanford-red-dark focus-visible:outline-none
-           focus-visible:ring-2 focus-visible:ring-stanford-red focus-visible:ring-offset-2;
+           hover:bg-brand-primary-dark focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-md border-2 border-stanford-red px-6 py-3
-           text-sm font-semibold text-stanford-red transition-colors
-           hover:bg-stanford-red hover:text-white focus-visible:outline-none
-           focus-visible:ring-2 focus-visible:ring-stanford-red focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-md border-2 border-brand-primary px-6 py-3
+           text-sm font-semibold text-brand-primary transition-colors
+           hover:bg-brand-primary hover:text-white focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2;
   }
 
   .card {
@@ -61,11 +61,11 @@
   }
 
   .section-heading {
-    @apply text-3xl font-bold text-stanford-black sm:text-4xl;
+    @apply text-3xl font-bold text-brand-dark sm:text-4xl;
   }
 
   .section-subheading {
-    @apply mt-2 text-lg text-stanford-cool-grey;
+    @apply mt-2 text-lg text-brand-cool-grey;
   }
 
   .code-block {

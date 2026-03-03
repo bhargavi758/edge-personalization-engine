@@ -54,16 +54,16 @@ export const experiments: Record<string, Experiment> = {
   cta_color: {
     id: "cta_color",
     name: "CTA Button Color",
-    description: "Test Stanford red versus a contrasting green CTA",
+    description: "Test brand primary versus a contrasting green CTA",
     enabled: false,
     startDate: "2024-03-01",
     endDate: "2024-04-01",
     variants: [
       {
         id: "red",
-        name: "Stanford Red",
+        name: "Brand Blue",
         weight: 50,
-        description: "Default Stanford red CTA",
+        description: "Default brand blue CTA",
       },
       {
         id: "green",

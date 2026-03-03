@@ -13,10 +13,10 @@ function ExperimentCard({ experiment }: { experiment: Experiment }) {
     <div className="card">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-stanford-black">
+          <h3 className="text-lg font-semibold text-brand-dark">
             {experiment.name}
           </h3>
-          <p className="mt-1 text-sm text-stanford-cool-grey">
+          <p className="mt-1 text-sm text-brand-cool-grey">
             {experiment.description}
           </p>
         </div>
@@ -26,7 +26,7 @@ function ExperimentCard({ experiment }: { experiment: Experiment }) {
       </div>
 
       <div className="mt-6">
-        <p className="mb-3 text-xs font-medium uppercase tracking-wide text-stanford-cool-grey">
+        <p className="mb-3 text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
           Variants
         </p>
         <div className="space-y-2">
@@ -37,25 +37,25 @@ function ExperimentCard({ experiment }: { experiment: Experiment }) {
                 key={variant.id}
                 className={`flex items-center justify-between rounded-lg border p-3 text-sm ${
                   isAssigned
-                    ? "border-stanford-red bg-stanford-red/5"
+                    ? "border-brand-primary bg-brand-primary/5"
                     : "border-gray-200"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div
                     className={`h-2.5 w-2.5 rounded-full ${
-                      isAssigned ? "bg-stanford-red" : "bg-gray-300"
+                      isAssigned ? "bg-brand-primary" : "bg-gray-300"
                     }`}
                   />
                   <div>
                     <p className="font-medium">{variant.name}</p>
-                    <p className="text-xs text-stanford-cool-grey">
+                    <p className="text-xs text-brand-cool-grey">
                       {variant.description}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-stanford-cool-grey">
+                  <span className="text-xs text-brand-cool-grey">
                     {variant.weight}% traffic
                   </span>
                   {isAssigned && (
@@ -68,7 +68,7 @@ function ExperimentCard({ experiment }: { experiment: Experiment }) {
         </div>
       </div>
 
-      <div className="mt-4 flex items-center gap-4 border-t border-gray-100 pt-4 text-xs text-stanford-cool-grey">
+      <div className="mt-4 flex items-center gap-4 border-t border-gray-100 pt-4 text-xs text-brand-cool-grey">
         <span>ID: {experiment.id}</span>
         <span>Started: {experiment.startDate}</span>
         {experiment.endDate && <span>Ends: {experiment.endDate}</span>}
@@ -93,19 +93,19 @@ export default function ExperimentsPage() {
       </div>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-3">
-        <div className="card bg-stanford-fog">
-          <p className="text-3xl font-bold text-stanford-red">{all.length}</p>
-          <p className="text-sm text-stanford-cool-grey">Total Experiments</p>
+        <div className="card bg-brand-fog">
+          <p className="text-3xl font-bold text-brand-primary">{all.length}</p>
+          <p className="text-sm text-brand-cool-grey">Total Experiments</p>
         </div>
-        <div className="card bg-stanford-fog">
+        <div className="card bg-brand-fog">
           <p className="text-3xl font-bold text-emerald-600">{active.length}</p>
-          <p className="text-sm text-stanford-cool-grey">Active Now</p>
+          <p className="text-sm text-brand-cool-grey">Active Now</p>
         </div>
-        <div className="card bg-stanford-fog">
-          <p className="text-3xl font-bold text-stanford-black">
+        <div className="card bg-brand-fog">
+          <p className="text-3xl font-bold text-brand-dark">
             {all.reduce((sum, e) => sum + e.variants.length, 0)}
           </p>
-          <p className="text-sm text-stanford-cool-grey">Total Variants</p>
+          <p className="text-sm text-brand-cool-grey">Total Variants</p>
         </div>
       </div>
 

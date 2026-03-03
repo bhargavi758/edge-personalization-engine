@@ -19,28 +19,28 @@ function FlagCard({
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="text-lg font-semibold text-stanford-black">
+            <h3 className="text-lg font-semibold text-brand-dark">
               {flag.name}
             </h3>
             <span className={isEnabled ? "badge-green" : "badge-red"}>
               {isEnabled ? "ON" : "OFF"}
             </span>
           </div>
-          <p className="mt-1 text-sm text-stanford-cool-grey">
+          <p className="mt-1 text-sm text-brand-cool-grey">
             {flag.description}
           </p>
         </div>
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
-        <div className="rounded-lg bg-stanford-fog px-3 py-2">
-          <p className="text-xs font-medium uppercase tracking-wide text-stanford-cool-grey">
+        <div className="rounded-lg bg-brand-fog px-3 py-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
             Rollout
           </p>
           <div className="mt-1 flex items-center gap-2">
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-200">
               <div
-                className="h-full rounded-full bg-stanford-red transition-all"
+                className="h-full rounded-full bg-brand-primary transition-all"
                 style={{ width: `${flag.rolloutPercentage}%` }}
               />
             </div>
@@ -50,8 +50,8 @@ function FlagCard({
           </div>
         </div>
 
-        <div className="rounded-lg bg-stanford-fog px-3 py-2">
-          <p className="text-xs font-medium uppercase tracking-wide text-stanford-cool-grey">
+        <div className="rounded-lg bg-brand-fog px-3 py-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
             Global Toggle
           </p>
           <p className="mt-1 text-sm font-semibold">
@@ -59,8 +59,8 @@ function FlagCard({
           </p>
         </div>
 
-        <div className="rounded-lg bg-stanford-fog px-3 py-2">
-          <p className="text-xs font-medium uppercase tracking-wide text-stanford-cool-grey">
+        <div className="rounded-lg bg-brand-fog px-3 py-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
             Target Rules
           </p>
           <p className="mt-1 text-sm font-semibold">
@@ -76,7 +76,7 @@ function FlagCard({
           {flag.targetRules.map((rule, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 text-xs text-stanford-cool-grey"
+              className="flex items-center gap-2 text-xs text-brand-cool-grey"
             >
               <span className="badge-amber">{rule.attribute}</span>
               <span>{rule.operator}</span>
@@ -112,21 +112,21 @@ export default function FeaturesPage() {
       </div>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-3">
-        <div className="card bg-stanford-fog">
-          <p className="text-3xl font-bold text-stanford-red">
+        <div className="card bg-brand-fog">
+          <p className="text-3xl font-bold text-brand-primary">
             {allFlags.length}
           </p>
-          <p className="text-sm text-stanford-cool-grey">Total Flags</p>
+          <p className="text-sm text-brand-cool-grey">Total Flags</p>
         </div>
-        <div className="card bg-stanford-fog">
+        <div className="card bg-brand-fog">
           <p className="text-3xl font-bold text-emerald-600">{enabledCount}</p>
-          <p className="text-sm text-stanford-cool-grey">Enabled For You</p>
+          <p className="text-sm text-brand-cool-grey">Enabled For You</p>
         </div>
-        <div className="card bg-stanford-fog">
-          <p className="text-3xl font-bold text-stanford-black">
+        <div className="card bg-brand-fog">
+          <p className="text-3xl font-bold text-brand-dark">
             {allFlags.filter((f) => f.targetRules.length > 0).length}
           </p>
-          <p className="text-sm text-stanford-cool-grey">With Target Rules</p>
+          <p className="text-sm text-brand-cool-grey">With Target Rules</p>
         </div>
       </div>
 

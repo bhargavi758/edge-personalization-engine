@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-localhost:3000. Geo defaults to US/CA/Stanford locally since there are no Vercel headers.
+localhost:3000. Geo defaults to US/CA/San Francisco locally since there are no Vercel headers.
 
 ## how it works
 

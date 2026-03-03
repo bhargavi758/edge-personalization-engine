@@ -81,7 +81,7 @@ export function resolveGeo(
   return {
     country: countryCode || "US",
     region: regionCode || "CA",
-    city: city || "Stanford",
+    city: city || "San Francisco",
     timezone: TIMEZONE_MAP[countryCode] ?? "America/Los_Angeles",
     continent: CONTINENT_MAP[countryCode] ?? "North America",
   };

@@ -54,22 +54,22 @@ export function RegionalContent({
       <h2 className="mb-6 text-2xl font-bold">Timezone-Aware Content</h2>
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="card">
-          <p className="text-xs font-medium uppercase tracking-wide text-stanford-cool-grey">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
             Your Local Time ({timezone})
           </p>
-          <p className="mt-2 font-mono text-2xl font-bold text-stanford-black">
+          <p className="mt-2 font-mono text-2xl font-bold text-brand-dark">
             {localTime || "Loading..."}
           </p>
         </div>
 
         <div className="card">
-          <p className="text-xs font-medium uppercase tracking-wide text-stanford-cool-grey">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand-cool-grey">
             Detected Region
           </p>
-          <p className="mt-2 text-2xl font-bold text-stanford-black">
+          <p className="mt-2 text-2xl font-bold text-brand-dark">
             {continentEmoji[continent] ?? "🌐"} {continent}
           </p>
-          <p className="mt-1 text-sm text-stanford-cool-grey">
+          <p className="mt-1 text-sm text-brand-cool-grey">
             Country code: {country}
           </p>
         </div>
@@ -86,7 +86,7 @@ export function RegionalContent({
             x-vercel-ip-region
           </code>{" "}
           headers injected by Vercel&apos;s edge network. In local development,
-          it falls back to US/CA/Stanford. The timezone is derived from the
+          it falls back to US/CA/San Francisco. The timezone is derived from the
           country code and used here to render a live clock in your local time.
         </p>
       </div>
